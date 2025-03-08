@@ -1,0 +1,13 @@
+.buttonLink {
+    all: unset;
+    cursor: pointer;
+    color: var(--color-white-dark-100);
+    font-weight: bold;
+    text-decoration: none;
+    
+    &:hover {
+        color: var(--color-white-dark-200);
+        text-decoration: underline;
+        transition: background-color 0.3s ease;
+    }
+}

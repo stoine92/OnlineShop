@@ -1,0 +1,15 @@
+.nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1.5rem;
+    gap: 1rem;
+    background-color: var(--color-warm-amber-700);
+
+    &_pages {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+    }
+}

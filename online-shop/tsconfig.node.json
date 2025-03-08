@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",               // Use the latest JavaScript features
+    "module": "ESNext",               // Use ESNext modules
+    "moduleResolution": "node",       // Resolve modules using Node.js resolution logic
+    "esModuleInterop": true,          // Enable interoperability between CommonJS and ES Modules
+    "skipLibCheck": true,             // Skip type-checking of declaration files
+    "strict": true,                   // Enable strict type checking
+    "noEmit": false,                   // Do not emit any output (useful for type-checking only)
+    "resolveJsonModule": true,        // Allow importing of `.json` files
+    "types": ["node"],                // Include the Node.js types for server-side development
+    "lib": ["ESNext", "DOM"],         // Include DOM types if using Node for SSR, otherwise omit "DOM"
+    "allowJs": true,                  // Allow JavaScript files to be imported and type-checked
+    "jsx": "react-jsx",               // Enable JSX syntax support for React 17+ (modern JSX transformation)
+    "baseUrl": ".",                   // Base directory to resolve non-relative module names
+    "paths": {
+      "@/*": ["src/*"]                // Alias configuration, adjust for your project structure
+    }
+  },
+  "include": [
+    "src/**/*.ts",                    // Include all TypeScript files in the `src` directory
+    "src/**/*.tsx"                    // Include JSX files if using React in Node.js environment
+  ],
+  "exclude": [
+    "node_modules",                   // Exclude `node_modules`
+    "dist"                             // Exclude build outputs (if generated)
+  ]
+}
