@@ -5,7 +5,7 @@ interface ButtonLinkProps {
     children: string;
     type?: "button" | "submit" | "reset";
     onClick: () => void;
-    disabled: boolean;
+    disabled?: boolean;
     secondary?: boolean;
     small?: boolean;
 }
@@ -23,6 +23,9 @@ const ButtonLink = ({ className, children, type = 'button', onClick, disabled, s
     return (
         <button 
             className={classes.join(" ")}
+            type={type}
+            onClick={onClick}
+            disabled={disabled}
         >
             {children}
         </button>
