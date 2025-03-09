@@ -5,12 +5,13 @@ import { fetchProducts } from "../lib/fetchProducs";
 //Components
 import Layout from "../components/Layout/Layout";
 import Section from "../components/Layout/Section";
+import Product from "../components/Products/Product";
 
 function Home () {
 
     const { state, dispatch } = useContext(CartContext);
 
-    const { data: products, status } = useQuery({
+    const { status } = useQuery({
         queryKey: ["products"],
         queryFn: ({ signal }) => fetchProducts({ signal })
         .then((data) => {
@@ -25,8 +26,6 @@ function Home () {
         refetchOnWindowFocus: false,
     });
 
-    console.log(state);
-
     if(status === "pending") return <div>Loading...</div>
 
 
@@ -34,10 +33,12 @@ function Home () {
         <Layout>
             <Section>
                 <Section.Aside title="Filters">
-                    <span>Hello</span>
+                    <span>Hasddasello</span>
                 </Section.Aside>
                 <Section.Main title="Our Selection">
-                    <span>Hello</span>
+                    {state.products.map((product) => (
+                        <Product {...product} />
+                    ))}
                 </Section.Main>
                 
             </Section>

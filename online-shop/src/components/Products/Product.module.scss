@@ -1,0 +1,28 @@
+@use "../../styles/mixins.scss";
+
+
+.product {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    background-color: var(--color-peach-cream-100);
+    box-shadow: var(--box-shadow);
+    gap: 0.5rem;
+
+    &_title {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        
+        &-text {
+            @include mixins.bold-text;
+            color: var(--color-white-dark-900);
+
+        }
+        &-category {
+            color: var(--color-white-dark-900);
+        }
+
+    }
+}

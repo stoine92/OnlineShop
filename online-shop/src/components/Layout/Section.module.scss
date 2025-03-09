@@ -4,7 +4,7 @@
 .section {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     gap: 2rem;
     color: var(--color-white-dark-900);
     
@@ -14,11 +14,12 @@
         align-items: flex-start;
         flex: 3 0 0;
         border-radius: var(--border-radius);
+        gap: 1rem;
         
         &-content {
-            display: flex;
-            padding: 1rem;
-            background-color: var(--color-peach-cream-100);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
             align-self: stretch;
         }
     }
@@ -30,6 +31,7 @@
         flex: 1 0 0;
         background-color: var(--color-peach-cream-100);
         border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
     }
 
     &_header {
@@ -55,6 +57,7 @@
         justify-content: space-between;
         align-items: center;
         align-self: stretch;
+
         &-text {
             @include mixins.title-text;
             color: var(--color-white-dark-900);
