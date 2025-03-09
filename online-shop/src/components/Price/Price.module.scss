@@ -1,0 +1,24 @@
+@use '../../styles/mixins.scss';
+
+
+.price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    &-label {
+        @include mixins.normal-text;
+        color: var(--color-white-dark-900);
+    }
+
+    &-value {
+        @include mixins.title-text;
+        color: var(--color-white-dark-900);
+
+    }
+
+    &-tax {
+        @include mixins.minor-text;
+        color: var(--color-white-dark-800);
+    }
+}

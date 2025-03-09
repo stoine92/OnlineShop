@@ -10,3 +10,23 @@
     font-weight: bold;
 }
 
+@mixin bold-text {
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: bold;
+}
+
+@mixin normal-text {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+@mixin small-text {
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+
+@mixin minor-text {
+    font-size: 0.6rem;
+    line-height: 1.5;
+}

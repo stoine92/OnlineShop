@@ -1,0 +1,23 @@
+@use "../../styles/mixins.scss";
+
+.rating {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    
+    
+    &_stars {
+        font-size: 1.2rem;
+        &-success {
+            color: var(--color-star-success);
+        }
+        &-fail {
+            color: var(--color-star-disabled);
+        }
+    }
+    
+    &-info {
+        @include mixins.small-text;
+        color: var(--color-white-dark-800);
+    }
+}
