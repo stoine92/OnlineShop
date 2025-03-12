@@ -9,4 +9,14 @@
         text-decoration: underline;
         transition: background-color 0.3s ease;
     }
+
+    &--secondary {
+        color: var(--color-white-dark-900);
+
+        &:hover {
+            color: var(--color-white-dark-800);
+            text-decoration: underline;
+            transition: background-color 0.3s ease;
+        }
+    }
 }

@@ -6,6 +6,8 @@ import { fetchProducts } from "../lib/fetchProducs";
 import Layout from "../components/Layout/Layout";
 import Section from "../components/Layout/Section";
 import Product from "../components/Products/Product";
+import usePagination from "../components/hooks/usePagination";
+import PaginationButtons from "../components/Buttons/PaginationButtons";
 
 function Home () {
 
@@ -26,19 +28,25 @@ function Home () {
         refetchOnWindowFocus: false,
     });
 
+    const { currentPageItems, currentPage, totalPages, totalItems, goToFirstPage, goToNextPage, goToPrevPage, goToLastPage } = usePagination(state.products);
+
     if(status === "pending") return <div>Loading...</div>
 
+    console.log(totalItems)
 
     return (
         <Layout>
             <Section>
                 <Section.Aside title="Filters">
-                    <span>Hasddasello</span>
+                    <span>Hello</span>
                 </Section.Aside>
-                <Section.Main title="Our Selection">
-                    {state.products.map((product) => (
-                        <Product {...product} />
-                    ))}
+                <Section.Main title="Our Selection" results={`${currentPageItems.length} - ${totalItems}`}>
+                    <Section.Cards>
+                        {currentPageItems.map((product) => (
+                            <Product {...product} />
+                        ))}
+                    </Section.Cards>
+                    <PaginationButtons goToFirstPage={goToFirstPage} goToNextPage={goToNextPage} goToPrevPage={goToPrevPage} goToLastPage={goToLastPage} />
                 </Section.Main>
                 
             </Section>
