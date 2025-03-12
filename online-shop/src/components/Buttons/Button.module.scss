@@ -1,0 +1,25 @@
+.button {
+    all: unset;
+    cursor: pointer;
+    text-align: center;
+    color: var(--color-white-dark-100);
+    text-decoration: none;
+    background-color: var(--color-warm-amber-700);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    font-weight: bold;
+    width: 100%;
+    
+    &:hover, &:focus, &:focus-visible  {
+        background-color: var(--color-warm-amber-800);
+        transition: background-color 0.3s ease;
+    }
+    &:focus-visible {
+        outline: 2px solid var(--color-warm-amber-800);
+        outline-offset: 2px;
+    }
+
+    &:active {
+        background-color: var(--color-warm-amber-900);
+    }
+}

@@ -22,18 +22,17 @@ const Section = ({ children }: SectionProps ) => {
 interface SectionMainProps {
     children: ReactNode;
     title?: string;
+    results?: string;
 };
 
-const SectionMain = ({ children, title }: SectionMainProps) => {
+const SectionMain = ({ children, title, results }: SectionMainProps) => {
     return (
         <div className={css['section_main']}>
             <div className={css['section_title']}>
                 <span className={css['section_title-text']}>{title}</span>
-                <span>6-10 results</span>
+                {results ? <span>{`${results} results`}</span> : null}
             </div>
-            <div className={css['section_main-content']}>
-                {children}
-            </div>
+            {children}
         </div>
     )
 }
@@ -56,6 +55,16 @@ const SectionAside = ({ children, title }: SectionAsideProps) => {
 }
 
 Section.Aside = SectionAside;
+
+const SectionCards = ({ children }: SectionMainProps) => {
+    return (
+        <div className={css['section_cards']}>
+            {children}
+        </div>
+    )
+}
+
+Section.Cards = SectionCards;
 
 
 export default Section;

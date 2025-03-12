@@ -4,6 +4,7 @@
 .product {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     padding: 1rem;
     border-radius: var(--border-radius);
     background-color: var(--color-peach-cream-100);
@@ -23,6 +24,10 @@
         &-category {
             color: var(--color-white-dark-900);
         }
+    }
 
+    &_button {
+        display: flex;
+        background-color: green;
     }
 }

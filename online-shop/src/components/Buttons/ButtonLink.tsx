@@ -1,24 +1,15 @@
+import { ButtonLinkProps } from "./ButtonTypes";
 import css from "./ButtonLink.module.scss";
 
-interface ButtonLinkProps {
-    className?: string;
-    children: string;
-    type?: "button" | "submit" | "reset";
-    onClick: () => void;
-    disabled?: boolean;
-    secondary?: boolean;
-    small?: boolean;
-}
 
 const ButtonLink = ({ className, children, type = 'button', onClick, disabled, secondary, small }: ButtonLinkProps) => {
 
     const classes = [
         css.buttonLink,
-        className
+        className,
+        secondary && css["buttonLink--secondary"],
+        small && css["buttonLink--small"],
     ];
-
-    if(secondary) { classes.push("--secondary") }
-    if(small) { classes.push("--small") }
 
     return (
         <button 

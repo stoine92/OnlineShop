@@ -2,7 +2,8 @@
 
 .rating {
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: space-between;
     
     
