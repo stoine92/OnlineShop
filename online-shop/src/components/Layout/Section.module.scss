@@ -62,5 +62,11 @@
             @include mixins.title-text;
             color: var(--color-white-dark-900);
         }
+
+        &-subtext {
+            @include mixins.small-text;
+            color: var(--color-white-dark-900);
+            font-weight: bold;
+        }
     }
 }

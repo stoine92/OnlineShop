@@ -1,3 +1,5 @@
+import { ComponentType } from "react";
+
 export interface ButtonProps {
     className?: string;
     children: string;
@@ -9,3 +11,11 @@ export interface ButtonProps {
 }
 
 export interface ButtonLinkProps extends ButtonProps {}
+
+export interface PaginationButtonProps {
+    className?: string;
+    icon: ComponentType;
+    type?: "button" | "submit" | "reset";
+    onClick?: () => void;
+    disabled?: boolean;
+}

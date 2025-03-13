@@ -7,7 +7,7 @@ import Layout from "../components/Layout/Layout";
 import Section from "../components/Layout/Section";
 import Product from "../components/Products/Product";
 import usePagination from "../components/hooks/usePagination";
-import PaginationButtons from "../components/Buttons/PaginationButtons";
+import PaginationButtons from "../components/Buttons/Pagination";
 
 function Home () {
 
@@ -28,11 +28,18 @@ function Home () {
         refetchOnWindowFocus: false,
     });
 
+    console.log(state);
+
     const { currentPageItems, currentPage, totalPages, totalItems, goToFirstPage, goToNextPage, goToPrevPage, goToLastPage } = usePagination(state.products);
 
-    if(status === "pending") return <div>Loading...</div>
+    const onProductSelect = (product) => {
+        dispatch({
+            type: "ADD_PRODUCT",
+            product
+        })
+    }
 
-    console.log(totalItems)
+    if(status === "pending") return <div>Loading...</div>
 
     return (
         <Layout>
@@ -40,13 +47,13 @@ function Home () {
                 <Section.Aside title="Filters">
                     <span>Hello</span>
                 </Section.Aside>
-                <Section.Main title="Our Selection" results={`${currentPageItems.length} - ${totalItems}`}>
+                <Section.Main title="Our Selection" results={totalItems}>
                     <Section.Cards>
                         {currentPageItems.map((product) => (
-                            <Product {...product} />
+                            <Product key={product.id} product={product} onSelect={onProductSelect} />
                         ))}
                     </Section.Cards>
-                    <PaginationButtons goToFirstPage={goToFirstPage} goToNextPage={goToNextPage} goToPrevPage={goToPrevPage} goToLastPage={goToLastPage} />
+                    <PaginationButtons goToFirstPage={goToFirstPage} goToNextPage={goToNextPage} goToPrevPage={goToPrevPage} goToLastPage={goToLastPage} currentPage={currentPage} totalPages={totalPages} />
                 </Section.Main>
                 
             </Section>

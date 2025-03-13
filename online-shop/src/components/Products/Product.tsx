@@ -7,7 +7,9 @@ import ButtonLink from "../Buttons/ButtonLink";
 import Dialog from "../Dialog/Dialog";
 import css from "./Product.module.scss";
 
-const Product = ({ title, price, description, category, image, rating }: Products) => {
+const Product = ({ product, onSelect }: Products) => {
+
+    const { title, price, description, category, image, rating } = product;
     return (
         <div className={css['product']}>
             <Image img={image} alt={title} />
@@ -21,7 +23,7 @@ const Product = ({ title, price, description, category, image, rating }: Product
             </Dialog>
             <Price label="Total" price={price} />
             <div className={css['product_button']}>
-                <Button onClick={() => console.log("cart func")}>Add To Cart</Button>
+                <Button onClick={() => onSelect(product)}>Add To Cart</Button>
             </div>
         </div>
     )
