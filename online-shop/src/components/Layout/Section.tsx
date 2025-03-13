@@ -22,7 +22,7 @@ const Section = ({ children }: SectionProps ) => {
 interface SectionMainProps {
     children: ReactNode;
     title?: string;
-    results?: string;
+    results?: number;
 };
 
 const SectionMain = ({ children, title, results }: SectionMainProps) => {
@@ -30,7 +30,7 @@ const SectionMain = ({ children, title, results }: SectionMainProps) => {
         <div className={css['section_main']}>
             <div className={css['section_title']}>
                 <span className={css['section_title-text']}>{title}</span>
-                {results ? <span>{`${results} results`}</span> : null}
+                {results ? <span className={css['section_title-subtext']}>{`${results} results`}</span> : null}
             </div>
             {children}
         </div>
