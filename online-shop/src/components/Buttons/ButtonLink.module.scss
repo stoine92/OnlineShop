@@ -1,5 +1,10 @@
 .buttonLink {
     all: unset;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    background-color: transparent;
     cursor: pointer;
     color: var(--color-white-dark-100);
     text-decoration: none;

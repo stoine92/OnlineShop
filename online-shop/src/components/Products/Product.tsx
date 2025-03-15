@@ -7,7 +7,12 @@ import ButtonLink from "../Buttons/ButtonLink";
 import Dialog from "../Dialog/Dialog";
 import css from "./Product.module.scss";
 
-const Product = ({ product, onSelect }: Products) => {
+interface ProductProps {
+    product: Products
+    onSelect: (product: Products) => void;
+}
+
+const Product = ({ product, onSelect }: ProductProps) => {
 
     const { title, price, description, category, image, rating } = product;
     return (

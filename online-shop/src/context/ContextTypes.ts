@@ -1,21 +1,36 @@
-export interface Products {
-    product: {
-        id: number;
-        category: string;
-        description: string;
-        image: string;
-        price: number;
-        rating: {
-            rate: number;
-            count: number;
+export interface ProductProps {
+    id: number;
+    title: string;
+    category: string;
+    description: string;
+    image: string;
+    price: number;
+    rating: {
+        rate: number;
+        count: number;
     };
-    title: string;}
-    onSelect: () => void;
+};
+
+export interface Products {
+    id: number;
+    title: string;
+    category: string;
+    description: string;
+    image: string;
+    price: number;
+    rating: {
+        rate: number;
+        count: number;
+    };
+    count: number;
 }
 
 export interface StateType {
     products: Products[];
-    filters: number[]
+    filters: number[];
+    cart: Products[];
+    itemsCount: number;
+    totalPrice: number;
 };
 
 
@@ -24,8 +39,13 @@ export interface GetProductsAction {
     products: Products[];
 }
 
+export interface AddProduct {
+    type: "ADD_PRODUCT";
+    product: Products;
+}
+
 export interface DecrementAction {
     type: "DECREMENT";
 }
 
-export type ActionType = GetProductsAction | DecrementAction;
+export type ActionType = GetProductsAction | DecrementAction | AddProduct;

@@ -2,6 +2,8 @@ import { useContext } from "react";
 import { CartContext } from "../context/CartContext"
 import { useQuery } from "@tanstack/react-query";
 import { fetchProducts } from "../lib/fetchProducs";
+import { Products } from "../context/ContextTypes";
+
 //Components
 import Layout from "../components/Layout/Layout";
 import Section from "../components/Layout/Section";
@@ -27,12 +29,10 @@ function Home () {
         gcTime: Infinity,
         refetchOnWindowFocus: false,
     });
-
-    console.log(state);
-
+    
     const { currentPageItems, currentPage, totalPages, totalItems, goToFirstPage, goToNextPage, goToPrevPage, goToLastPage } = usePagination(state.products);
 
-    const onProductSelect = (product) => {
+    const onProductSelect = (product: Products) => {
         dispatch({
             type: "ADD_PRODUCT",
             product

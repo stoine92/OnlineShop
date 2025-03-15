@@ -1,3 +1,5 @@
+@use "../../styles/mixins.scss";
+
 .nav {
     display: flex;
     justify-content: space-around;
@@ -11,5 +13,10 @@
         justify-content: flex-start;
         align-items: center;
         gap: 1rem;
+    }
+
+    &-total {
+        @include mixins.normal-text;
+        color: var(--color-white-dark-100);
     }
 }
