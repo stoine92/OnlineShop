@@ -1,10 +1,11 @@
-import { StateType, ActionType } from "./ContextTypes";
+import { StateType, ActionType, Products } from "./ContextTypes";
 
 export const initialState: StateType = { 
     products: [],
     filters: [],
     cart: [],
     itemsCount: 0,
+    totalPrice: 0,
 };
 
 export const reducer = (state: StateType, action: ActionType): StateType => {
@@ -18,23 +19,25 @@ export const reducer = (state: StateType, action: ActionType): StateType => {
             };
 
         case "ADD_PRODUCT":{
-
             const { product } = action;
             const existingProduct = state.cart.find((p) => p.id === product.id);
 
-            let updatedProducts = [];
+            let updatedCart;
+            let updatedTotalPrice = state.totalPrice;
 
             if(!existingProduct){
-                updatedProducts.push({ ...product, count : 1});
+                updatedCart = [...state.cart, { ...product, count: 1}];
             } else {
-                existingProduct.count++;
+                updatedCart = state.cart.map((p) => {
+                    return p.id === product.id ? { ...p, count: p.count + 1} : p
+                });
             }
-
+            updatedTotalPrice += product.price;
 
             return {
                 ...state,
-                cart: [...state.cart, ...updatedProducts],
-                itemsCount: getTotalItemsCount([...state.cart, ...updatedProducts]),
+                cart: updatedCart,
+                totalPrice: updatedTotalPrice,
             }
         }
 
@@ -46,6 +49,6 @@ export const reducer = (state: StateType, action: ActionType): StateType => {
 };
 
 
-const getTotalItemsCount = (products) => {
-    return products.reduce((acc, curr) => acc + curr, 0);
+const getTotalItemsCount = (products: Products[]): number => {
+    return products.reduce((acc, curr) => acc + (curr.price || 0), 0);
 }

@@ -1,8 +1,8 @@
-import { ComponentType } from "react";
+import { ComponentType, ReactNode } from "react";
 
 export interface ButtonProps {
     className?: string;
-    children: string;
+    children: ReactNode | string;
     type?: "button" | "submit" | "reset";
     onClick?: () => void;
     disabled?: boolean;

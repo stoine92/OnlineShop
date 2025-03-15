@@ -4,7 +4,7 @@ import { Products } from "../../context/ContextTypes";
 
 const usePagination = (items: Products[], itemsPerPage: number = 10) => {
     const [currentPage, setCurrentPage] = useState(1);
-
+    
     const totalItems = items.length;
 
     const totalPages = useMemo(() => Math.ceil(items.length / itemsPerPage), [items, itemsPerPage]);
@@ -16,22 +16,26 @@ const usePagination = (items: Products[], itemsPerPage: number = 10) => {
 
     const goToFirstPage = () => {
         setCurrentPage(1);
+        window.scrollTo(0, 0);
     };
 
     const goToNextPage = () => {
         if(currentPage < totalPages){
             setCurrentPage((prev) => prev + 1);
+            window.scrollTo(0, 0);
         }
     };
 
     const goToPrevPage = () => {
         if(currentPage > 1) {
-            setCurrentPage((prev) => prev - 1)
+            setCurrentPage((prev) => prev - 1);
+            window.scrollTo(0, 0);
         }
     };
     
     const goToLastPage = () => {
         setCurrentPage(totalPages);
+        window.scrollTo(0, 0);
     }
 
     return {
