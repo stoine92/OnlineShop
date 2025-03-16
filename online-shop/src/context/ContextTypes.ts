@@ -25,18 +25,34 @@ export interface Products {
     count: number;
 }
 
+export interface FilterOption {
+    description: string;
+    value: string;
+    selected?: boolean;
+}
+
+export interface FilterType {
+    name: string;
+    group: string;
+    options: FilterOption[] | [];
+    isActive?: number | boolean;
+    callback: ({ products, filter }: { products: Products[], filter: FilterType }) => Products[];
+}
+
 export interface StateType {
     products: Products[];
-    filters: number[];
+    filters: FilterType[];
     cart: Products[];
+    filteredResults: Products[];
     itemsCount: number;
     totalPrice: number;
 };
 
-
 export interface GetProductsAction {
     type: "GET_PRODUCTS";
     products: Products[];
+    // filters: FilterType[];
+    filters: any;
 }
 
 export interface AddProduct {
@@ -48,4 +64,17 @@ export interface DecrementAction {
     type: "DECREMENT";
 }
 
-export type ActionType = GetProductsAction | DecrementAction | AddProduct;
+export interface FilterChangeAction {
+    type: "FILTER_CHANGE";
+    name: string;
+    options: FilterOption[] | [];
+    isActive?: number;
+}
+
+export interface ResetFiltersAction {
+    type: "RESET_FILTERS";
+    // filters: FilterType[];
+    filters: any;
+}
+
+export type ActionType = GetProductsAction | DecrementAction | AddProduct | FilterChangeAction | ResetFiltersAction;
