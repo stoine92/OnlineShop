@@ -1,0 +1,39 @@
+@use "../../styles/mixins";
+
+.filters {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    &_title {
+        background: none;
+        border: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        border-bottom: 1px solid var(--color-soft-sage-200);
+        @include mixins.bold-text;
+        color: var(--color-white-dark-900);
+        cursor: pointer;
+        outline: none;
+
+        &:hover, &:focus-visible, &:focus {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        &:active {
+            color: var(--color-white-dark-800);
+        }
+    }
+
+    &_options {
+        display: flex;
+        padding: 1rem;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .hidden {
+        display: none;
+    }
+}

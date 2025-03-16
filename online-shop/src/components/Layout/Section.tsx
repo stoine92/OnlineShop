@@ -39,13 +39,16 @@ const SectionMain = ({ children, title, results }: SectionMainProps) => {
 
 Section.Main = SectionMain;
 
-interface SectionAsideProps extends SectionMainProps {};
+interface SectionAsideProps extends SectionMainProps {
+    button?: ReactNode;
+};
 
-const SectionAside = ({ children, title }: SectionAsideProps) => {
+const SectionAside = ({ children, title, button }: SectionAsideProps) => {
     return (
         <div className={css['section_aside']}>
             <div className={css['section_header']}>
                 <span className={css['section_header-text']}>{title}</span>
+                {button && button}
             </div>
             <div className={css['section_body']}>
                 {children}
