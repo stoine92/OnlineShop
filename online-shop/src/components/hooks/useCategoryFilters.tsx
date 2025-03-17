@@ -15,11 +15,13 @@ function CategoryFilter ({ name, options }: CategoryFilterProps) {
         const newItem = Object.assign({}, {...item, selected: !item.selected});
         newOptions[index] = newItem;
 
+        const isActive = newOptions.some((option) => option.selected);
+        
         dispatch({
             type: "FILTER_CHANGE",
             name,
             options: newOptions,
-            isActive: 1,
+            isActive: isActive ? 1 : 0,
 
         })
     }
