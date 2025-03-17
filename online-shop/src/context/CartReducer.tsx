@@ -7,6 +7,7 @@ export const initialState: StateType = {
     filteredResults: [],
     itemsCount: 0,
     totalPrice: 0,
+    page: 1,
 };
 
 export const reducer = (state: StateType, action: ActionType): StateType => {
@@ -18,7 +19,8 @@ export const reducer = (state: StateType, action: ActionType): StateType => {
                 ...state,
                 products,
                 filteredResults: filterProducts(products, filters) || [],
-                filters
+                filters,
+                page: 1,
             };
 
         case "ADD_PRODUCT":{
@@ -64,23 +66,28 @@ export const reducer = (state: StateType, action: ActionType): StateType => {
             return {
                 ...state,
                 filters,
-                filteredResults
+                filteredResults,
+                page: 1,
             }
 
+        }
+
+        case "SET_PAGE": { 
+            return {
+                ...state,
+                page: action.page,
+            }
         }
 
         case "RESET_FILTERS": {
             return {
                 ...state,
                 filters: action.filters ?? [],
-                filteredResults: filterProducts(state.products, action.filters)
+                filteredResults: filterProducts(state.products, action.filters),
+                page: 1,
             }
         }
-
-        case "DECREMENT":
-            return { ...state };
-        default:
-            return state;
+        
     }
 };
 
@@ -93,9 +100,4 @@ const filterProducts = (products: Products[], filters: FilterType[]) => {
     return activeFilters.reduce((filteredProducts, filter) => {
         return filter.callback({ products: filteredProducts, filter });
     }, products);
-}
-
-
-const getTotalItemsCount = (products: Products[]): number => {
-    return products.reduce((acc, curr) => acc + (curr.price || 0), 0);
 }

@@ -46,35 +46,37 @@ export interface StateType {
     filteredResults: Products[];
     itemsCount: number;
     totalPrice: number;
+    page: number;
 };
 
-export interface GetProductsAction {
+interface GetProductsAction {
     type: "GET_PRODUCTS";
     products: Products[];
     // filters: FilterType[];
     filters: any;
 }
 
-export interface AddProduct {
+interface AddProduct {
     type: "ADD_PRODUCT";
     product: Products;
 }
 
-export interface DecrementAction {
-    type: "DECREMENT";
-}
-
-export interface FilterChangeAction {
+interface FilterChangeAction {
     type: "FILTER_CHANGE";
     name: string;
     options: FilterOption[] | [];
     isActive?: number;
 }
 
-export interface ResetFiltersAction {
+interface ResetFiltersAction {
     type: "RESET_FILTERS";
     // filters: FilterType[];
     filters: any;
 }
 
-export type ActionType = GetProductsAction | DecrementAction | AddProduct | FilterChangeAction | ResetFiltersAction;
+interface SetPageAction {
+    type: "SET_PAGE";
+    page: number;
+}
+
+export type ActionType = GetProductsAction | AddProduct | FilterChangeAction | ResetFiltersAction | SetPageAction;

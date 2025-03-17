@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import Filters from "../../components/Filters/Filters";
 import useCategoryFilters from "./useCategoryFilters";
+import usePriceFilters from "./usePriceFilters";
 import { ProductProps } from "../../context/ContextTypes";
 
 
@@ -11,6 +12,7 @@ const useFilters = () => {
     const { products, filters } = state;
 
     const categoryFulters = useCategoryFilters();
+    const priceFilters = usePriceFilters();
 
     const resetFilters = () => {
         dispatch({
@@ -27,6 +29,8 @@ const useFilters = () => {
         const filters = [];
 
         filters.push(categoryFulters({ name: "Category", group: "category", products }));
+        filters.push(priceFilters({ name: "Price", group: "price", products }));
+        
 
         return filters;
     }

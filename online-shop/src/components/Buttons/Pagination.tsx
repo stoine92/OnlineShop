@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import PaginationButton from "./PaginationButton";
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
@@ -6,15 +7,48 @@ import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArro
 import css from "./Pagination.module.scss";
 
 interface PaginationProps {
-    goToFirstPage: () => void;
-    goToPrevPage: () => void;
-    goToNextPage: () => void;
-    goToLastPage: () => void;
     currentPage: number;
-    totalPages: number
+    totalPages: number;
+    onPageChange: (page: number) => void;
 }
 
-const Pagination = ({ goToFirstPage, goToPrevPage, goToNextPage, goToLastPage, currentPage, totalPages }: PaginationProps) => {
+const Pagination = ({ currentPage, totalPages, onPageChange }: PaginationProps) => {
+
+    const handleFirstPage =  useCallback(() => { 
+        onPageChange(1);
+        window.scrollTo(0, 0);
+    }, [onPageChange]);
+
+    const handleLastPage =  useCallback(() => { 
+        onPageChange(totalPages);
+        window.scrollTo(0, 0);
+    }, [onPageChange, totalPages]);
+
+    const handleNextPage =  useCallback(() => { 
+        if(currentPage < totalPages){
+            onPageChange(currentPage + 1);
+            window.scrollTo(0, 0);
+        }
+    }, [onPageChange, currentPage, totalPages]);
+
+    const handlePrevPage =  useCallback(() => {
+        if(currentPage > 1) {
+            onPageChange(currentPage - 1);
+            window.scrollTo(0, 0);
+        }
+    }, [currentPage, onPageChange]);
+
+    if(currentPage < 1){
+        onPageChange(1);
+    }
+
+    if(currentPage > totalPages && totalPages > 0){
+        onPageChange(totalPages);
+    }
+
+    if(totalPages <=0){
+        return;
+    }
 
     const forwardDisabled: boolean = currentPage === totalPages;
     const prevDisabled: boolean = currentPage === 1;
@@ -22,10 +56,10 @@ const Pagination = ({ goToFirstPage, goToPrevPage, goToNextPage, goToLastPage, c
     return(
         <div className={css['pagination']}>
             <div className={css['pagination_buttons']}>
-                <PaginationButton onClick={goToFirstPage} icon={KeyboardDoubleArrowLeftIcon} disabled={prevDisabled} />
-                <PaginationButton onClick={goToPrevPage} icon={KeyboardArrowLeftIcon} disabled={prevDisabled} />
-                <PaginationButton onClick={goToNextPage} icon={KeyboardArrowRightIcon} disabled={forwardDisabled} />
-                <PaginationButton onClick={goToLastPage} icon={KeyboardDoubleArrowRightIcon} disabled={forwardDisabled} />
+                <PaginationButton onClick={handleFirstPage} icon={KeyboardDoubleArrowLeftIcon} disabled={prevDisabled} />
+                <PaginationButton onClick={handlePrevPage} icon={KeyboardArrowLeftIcon} disabled={prevDisabled} />
+                <PaginationButton onClick={handleNextPage} icon={KeyboardArrowRightIcon} disabled={forwardDisabled} />
+                <PaginationButton onClick={handleLastPage} icon={KeyboardDoubleArrowRightIcon} disabled={forwardDisabled} />
             </div>
             <span className={css['pagination-paging']}>{`${currentPage} - ${totalPages}`}</span>
         </div>
