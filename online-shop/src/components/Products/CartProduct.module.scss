@@ -1,0 +1,78 @@
+@use "../../styles/mixins.scss";
+
+.cartProduct {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid var(--color-peach-cream-800);
+    border-radius: var(--border-radius);
+    align-self: stretch;
+
+    &-image {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 0.5rem;
+        margin-right: 1rem;
+    }
+
+    &_details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        width: 100%;
+
+        &-title {
+            @include mixins.header-text;
+            color: var(--color-peach-cream-900);
+        }
+
+        &-description {
+            @include mixins.normal-text;
+            color: var(--color-white-dark-700);
+        }
+    }
+
+    &_priceQuantity {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        align-self: stretch;
+
+        &-price {
+            @include mixins.bold-text;
+            color: var(--color-peach-cream-900);
+        }
+
+    }
+    &_quantity {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        
+        &-button {
+            background-color: var(--color-white-dark-100);
+            color: var(--color-white-dark-800);
+            border: 1px solid var(--color-white-dark-800);
+            border-radius: var(--border-radius);
+            padding: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        
+            &:hover {
+                background-color: var(--color-white-dark-200);
+            }
+        
+            &:focus {
+                outline: 1px solid var(--color-warm-amber-800);
+                outline-offset: 2px;
+            }
+        }
+
+        &-count {
+            @include mixins.bold-text;
+            color: var(--color-peach-cream-900);
+        }
+    }
+}
+

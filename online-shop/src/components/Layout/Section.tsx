@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import Layout from "./Layout";
 import css from "./Section.module.scss";
 
 
@@ -13,9 +14,11 @@ const Section = ({ children }: SectionProps ) => {
     ];
 
     return (
-        <div className={classes.join(" ")}>
-            {children}
-        </div>
+        <Layout>
+            <div className={classes.join(" ")}>
+                {children}
+            </div>
+        </Layout>
     )
 };
 
