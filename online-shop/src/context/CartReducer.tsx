@@ -31,10 +31,11 @@ export const reducer = (state: StateType, action: ActionType): StateType => {
             let updatedTotalPrice = state.totalPrice;
 
             if(!existingProduct){
-                updatedCart = [...state.cart, { ...product, count: 1}];
+                updatedCart = [...state.cart, { ...product, count: 1, totalPrice: product.price}];
             } else {
+
                 updatedCart = state.cart.map((p) => {
-                    return p.id === product.id ? { ...p, count: p.count + 1} : p
+                    return p.id === product.id ? { ...p, count: p.count + 1, totalPrice: (p.count + 1) * p.price} : p
                 });
             }
             updatedTotalPrice += product.price;
@@ -44,6 +45,31 @@ export const reducer = (state: StateType, action: ActionType): StateType => {
                 cart: updatedCart,
                 totalPrice: updatedTotalPrice,
             }
+        }
+
+        case "REMOVE_PRODUCT": {
+            const { product } = action;
+            const existingProduct = state.cart.find((p) => p.id === product.id);
+
+            if (!existingProduct) return state;
+
+            let updatedCart;
+            let updatedTotalPrice = state.totalPrice;
+
+            if (existingProduct.count === 1) {
+                updatedCart = state.cart.filter((p) => p.id !== product.id);
+            } else {
+                updatedCart = state.cart.map((p) => {
+                    return p.id === product.id ? { ...p, count: p.count - 1, totalPrice: p.totalPrice - product.price} : p;
+                });
+            }
+            updatedTotalPrice -= existingProduct.price;
+
+            return {
+                ...state,
+                cart: updatedCart,
+                totalPrice: updatedTotalPrice,
+            };
         }
 
         case "FILTER_CHANGE": {

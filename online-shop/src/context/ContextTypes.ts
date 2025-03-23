@@ -61,6 +61,11 @@ interface AddProduct {
     product: Products;
 }
 
+interface RemoveProduct {
+    type: "REMOVE_PRODUCT";
+    product: Products;
+}
+
 interface FilterChangeAction {
     type: "FILTER_CHANGE";
     name: string;
@@ -79,4 +84,4 @@ interface SetPageAction {
     page: number;
 }
 
-export type ActionType = GetProductsAction | AddProduct | FilterChangeAction | ResetFiltersAction | SetPageAction;
+export type ActionType = GetProductsAction | AddProduct | RemoveProduct | FilterChangeAction | ResetFiltersAction | SetPageAction;

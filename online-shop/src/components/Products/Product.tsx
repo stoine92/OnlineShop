@@ -23,7 +23,7 @@ const Product = ({ product, onSelect }: ProductProps) => {
                 <span className={css['product_title-category']}>{category}</span>
             </div>
             <Rating rating={rating} />
-            <Dialog title="Product Description" trigger={<ButtonLink secondary>Read More</ButtonLink>}>
+            <Dialog title={title} trigger={<ButtonLink secondary>Read More</ButtonLink>}>
                 <span>{description}</span>
             </Dialog>
             <Price label="Total" price={price} />

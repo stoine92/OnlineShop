@@ -5,6 +5,7 @@ import { fetchProducts } from "../lib/fetchProducs";
 import { Products } from "../context/ContextTypes";
 import handlePagination from "../utils/handlePagination";
 import useFilters from "../components/hooks/useFilters";
+import useCurrentWidth from "../utils/useCurrentWidth";
 
 //Components
 import Layout from "../components/Layout/Layout";
@@ -17,6 +18,8 @@ import HomePageSkeleton from "../components/Skeleton/HomePageSkeleton";
 function Home () {
 
     const { state, dispatch } = useContext(CartContext);
+
+    const { isDesktop } = useCurrentWidth();
 
     const { filteredResults, page } = state;
 
@@ -56,9 +59,8 @@ function Home () {
         }
     }, [filteredResults, page]);
     
-    
     return (
-        <Layout>
+        <>
             {status === "pending" ? 
                 <HomePageSkeleton />
             : 
@@ -81,7 +83,7 @@ function Home () {
                 
             </Section>
             }
-        </Layout>
+        </>
     );
 };
 
