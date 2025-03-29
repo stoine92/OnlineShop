@@ -5,23 +5,22 @@ import { fetchProducts } from "../lib/fetchProducs";
 import { Products } from "../context/ContextTypes";
 import handlePagination from "../utils/handlePagination";
 import useFilters from "../components/hooks/useFilters";
-import useCurrentWidth from "../utils/useCurrentWidth";
 
 //Components
-import Layout from "../components/Layout/Layout";
 import Section from "../components/Layout/Section";
 import Product from "../components/Products/Product";
 import PaginationButtons from "../components/Buttons/Pagination";
 import ButtonLink from "../components/Buttons/ButtonLink";
 import HomePageSkeleton from "../components/Skeleton/HomePageSkeleton";
+import Breakdown from "../components/Layout/Breakdown";
 
 function Home () {
 
     const { state, dispatch } = useContext(CartContext);
 
-    const { isDesktop } = useCurrentWidth();
-
     const { filteredResults, page } = state;
+
+    console.log(state)
 
     const { Filters, initialiseFilters, filterMethods, resetFilters } = useFilters();
 
@@ -67,6 +66,7 @@ function Home () {
             <Section>
                 <Section.Aside title="Filters" button={<ButtonLink onClick={resetFilters} secondary>Reset</ButtonLink>}>
                     <Filters {...filterMethods} />
+                    {state.itemsCount > 0 && <Breakdown count={state.itemsCount} price={state.totalPrice} />}
                 </Section.Aside>
                 <Section.Main title="Our Selection" results={resultCount}>
                     <Section.Cards>

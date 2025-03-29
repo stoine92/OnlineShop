@@ -6,6 +6,8 @@ import usePriceFilters from "./usePriceFilters";
 import { ProductProps } from "../../context/ContextTypes";
 
 
+
+
 const useFilters = () => {
     const { state, dispatch } = useContext(CartContext);
 
