@@ -25,7 +25,7 @@ function Cart () {
 
     return (
         <Section>
-            <Section.Main>
+            <Section.Main title={cart.length > 0 ? "Selected Items" : "No Items Selected"}>
                 {cart?.map((product) => (
                     <CartProduct key={product.id} product={product} onIncrement={() => onIncrement(product)} onDecrement={() => onDecrement(product)}/>
                 ))}

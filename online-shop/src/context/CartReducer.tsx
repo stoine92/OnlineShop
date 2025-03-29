@@ -40,10 +40,13 @@ export const reducer = (state: StateType, action: ActionType): StateType => {
             }
             updatedTotalPrice += product.price;
 
+            const updatedItemsCount = updatedCart.reduce((total, p) => total + p.count, 0);
+
             return {
                 ...state,
                 cart: updatedCart,
                 totalPrice: updatedTotalPrice,
+                itemsCount: updatedItemsCount,
             }
         }
 
@@ -65,10 +68,13 @@ export const reducer = (state: StateType, action: ActionType): StateType => {
             }
             updatedTotalPrice -= existingProduct.price;
 
+            const updatedItemsCount = updatedCart.reduce((total, p) => total + p.count, 0);
+
             return {
                 ...state,
                 cart: updatedCart,
                 totalPrice: updatedTotalPrice,
+                itemsCount: updatedItemsCount,
             };
         }
 
